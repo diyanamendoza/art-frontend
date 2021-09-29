@@ -10,7 +10,8 @@ export default class All extends Component {
 
     fetchSearch = async () => {
         try {
-            const response = await request.get('https://polar-temple-01678.herokuapp.com/art');
+            // OLD GET: const response = await request.get('https://polar-temple-01678.herokuapp.com/art');
+            const response = await request.get('https://stormy-thicket-09908.herokuapp.com/artworks');
             this.setState({
                 artData: response.body,
             });
@@ -25,7 +26,7 @@ export default class All extends Component {
 
     render() {
         const arr = this.state.artData;
-        console.log(arr);
+        // console.log(arr);
         return (
             <div className='art-container'>
                 {
