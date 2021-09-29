@@ -9,7 +9,8 @@ export default class Detail extends Component {
 
     componentDidMount = async () => {
         try {
-            const response = await request.get(`https://polar-temple-01678.herokuapp.com/art/${this.props.match.params.id}`);
+            // OLD GET: const response = await request.get(`https://polar-temple-01678.herokuapp.com/art/${this.props.match.params.id}`);
+            const response = await request.get(`https://stormy-thicket-09908.herokuapp.com/artworks/${this.props.match.params.id}`);
             this.setState({
                 artToDetail: response.body
             });
