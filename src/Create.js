@@ -21,7 +21,6 @@ export default class Create extends Component {
             category: this.state.category,
             century: this.state.century,
         })
-
         this.props.history.push('/')
     }
 
@@ -33,7 +32,7 @@ export default class Create extends Component {
 
     render() {
         return (
-            <form className='post-form'>
+            <form className='post-form' onSubmit={this.handleSubmit}>
                 <h3>Add an artwork to the gallery</h3>
                 <label>Title <input onChange={this.titleChange} /></label>
                 <label>Artist <input onChange={this.artistChange} /></label>
