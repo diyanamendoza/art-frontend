@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import All from './All.js';
 import Detail from './Detail.js';
+import Create from './Create.js';
 
 export default class App extends Component {
     
@@ -30,6 +31,11 @@ export default class App extends Component {
                             path="/art/:id" 
                             exact
                             render={(routerProps) => <Detail {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/add" 
+                            exact
+                            render={(routerProps) => <Create {...routerProps} />} 
                         />
                     </Switch>
                 </Router>
