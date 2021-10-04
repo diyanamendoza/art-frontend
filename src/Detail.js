@@ -24,9 +24,10 @@ export default class Detail extends Component {
         console.log(piece);
         return (
             <div className='detail-container'>
-                    <img className="img-detail" src={piece.img} alt={piece.id} />
+                    <img className="img-detail" src={piece.img} alt={piece.piece_id} />
                     <h3>{piece.title}</h3>
                     <h4>Artist: {piece.artist}</h4>
+                    <h4>Type: {piece.category}</h4>
                     <h4>{piece.century} Century</h4>
             </div>
         )

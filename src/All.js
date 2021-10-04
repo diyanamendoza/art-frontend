@@ -26,12 +26,12 @@ export default class All extends Component {
 
     render() {
         const arr = this.state.artData;
-        // console.log(arr);
+        console.log(arr);
         return (
             <div className='art-container'>
                 {
                     arr.map(entry => {
-                        return <Piece key={entry.id} {...entry}/>
+                        return <Piece key={entry.piece_id} {...entry}/>
                     })
                 }
             </div>

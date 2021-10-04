@@ -18,7 +18,7 @@ export default class Create extends Component {
             title: this.state.title,
             artist: this.state.artist,
             img: this.state.img,
-            category: this.state.category,
+            category_id: this.state.category,
             century: this.state.century,
         })
         this.props.history.push('/')
@@ -37,7 +37,10 @@ export default class Create extends Component {
                 <label>Title <input onChange={this.titleChange} /></label>
                 <label>Artist <input onChange={this.artistChange} /></label>
                 <label>Image URL <input onChange={this.imgChange} /></label>
-                <label>Category <input onChange={this.categoryChange} /></label>
+                <label>Category <select onChange={this.categoryChange}>
+                    <option value='1'>Painting</option>
+                    <option value='2'>Drawing</option>
+                    <option value='3'>Mixed Media</option></select></label>
                 <label>Century <input onChange={this.centuryChange} /></label>
                 <button>Submit</button>
             </form>
