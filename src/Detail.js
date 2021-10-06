@@ -41,6 +41,26 @@ export default class Detail extends Component {
         this.props.history.push('/');
     }
 
+    handleUpload = () => {
+        let options = {
+            cloud_name: 'dmp-cloud', 
+            upload_preset: 'dmp-preset',
+            multiple: false,
+            resource_type: 'image'
+          };
+      
+          window.cloudinary.openUploadWidget(options, (error, result) => { 
+            console.log(result);
+            if (error) {
+              console.error(error);
+              return;
+            }
+            
+            const image = result[0];
+            this.setState({ imgEdit: image.url }); 
+          });
+    }
+
     render() {
         const piece = this.state.artToDetail;
         const cats = this.state.categories;
@@ -71,11 +91,12 @@ export default class Detail extends Component {
                                 onChange={(e) => this.setState({ artistEdit: e.target.value})}
                                 />
                         </label>
-                        <label>Image URL
-                            <input 
+                        <label>Image
+                            <button type='button' className='img-button' onClick={this.handleUpload}>Upload via File/URL</button>
+                            {/* <input 
                                 defaultValue={piece.img} 
                                 onChange={(e) => this.setState({ imgEdit: e.target.value})}
-                                />
+                                />     */}
                         </label>
                         <label>Type
                             <select 
