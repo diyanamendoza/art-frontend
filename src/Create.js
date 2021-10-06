@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import request from 'superagent'
+import { createPiece } from './fetch-utils.js'
 
 export default class Create extends Component {
     state = {
@@ -12,15 +13,23 @@ export default class Create extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        await request
-        .post('https://stormy-thicket-09908.herokuapp.com/artworks')
-        .send({
+        let newPiece = {
             title: this.state.title,
             artist: this.state.artist,
             img: this.state.img,
             category_id: this.state.category,
             century: this.state.century,
-        })
+        }
+        await createPiece(newPiece);
+        // await request
+        // .post('https://stormy-thicket-09908.herokuapp.com/artworks')
+        // .send({
+        //     title: this.state.title,
+        //     artist: this.state.artist,
+        //     img: this.state.img,
+        //     category_id: this.state.category,
+        //     century: this.state.century,
+        // })
         this.props.history.push('/')
     }
 
