@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createPiece } from './fetch-utils.js'
+import { createPiece, getCategories } from './fetch-utils.js'
 
 export default class Create extends Component {
     state = {
@@ -8,6 +8,12 @@ export default class Create extends Component {
         img: '',
         category: '',
         century: '',
+        allCategories: []
+    }
+
+    componentDidMount = async () => {
+        const allCategories = await getCategories()
+        this.setState({allCategories});
     }
 
     handleSubmit = async e => {
@@ -20,15 +26,6 @@ export default class Create extends Component {
             century: this.state.century,
         }
         await createPiece(newPiece);
-        // await request
-        // .post('https://stormy-thicket-09908.herokuapp.com/artworks')
-        // .send({
-        //     title: this.state.title,
-        //     artist: this.state.artist,
-        //     img: this.state.img,
-        //     category_id: this.state.category,
-        //     century: this.state.century,
-        // })
         this.props.history.push('/')
     }
 
@@ -46,9 +43,12 @@ export default class Create extends Component {
                 <label>Artist <input onChange={this.artistChange} /></label>
                 <label>Image URL <input onChange={this.imgChange} /></label>
                 <label>Category <select onChange={this.categoryChange}>
-                    <option value='1'>Painting</option>
-                    <option value='2'>Drawing</option>
-                    <option value='3'>Mixed Media</option></select></label>
+                    {this.state.allCategories.map(category => 
+                        <option
+                        key={category.category}
+                        value={category.id}
+                        >{category.category}</option>)}
+                    </select></label>
                 <label>Century <input onChange={this.centuryChange} /></label>
                 <button>Submit</button>
             </form>
