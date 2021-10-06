@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import Piece from './Piece.js';
-import { getArtworks } from './fetch-utils.js';
+import { getArtworks, getCategories } from './fetch-utils.js';
+import Dropdown from './Dropdown.js';
 
 export default class All extends Component {
     state = {
-        artData: []
+        artData: [],
+        allCategories: [],
+        filterCat: ''
     }
 
 //PRE-refactoring:
@@ -23,18 +26,33 @@ export default class All extends Component {
     componentDidMount = async () => {
         const artData = await getArtworks();
         this.setState({artData})
+        const allCategories = await getCategories()
+        this.setState({allCategories});
+    }
+
+    handleCatSelect = async (e) => {
+        await this.setState({filterCat: e.target.value});
+        // console.log(this.state.filterCat);
     }
 
     render() {
         const arr = this.state.artData;
         // console.log(arr);
         return (
-            <div className='art-container'>
-                {
-                    arr.map(entry => {
+            <div className='all-page'>
+                <Dropdown 
+                handleChange={this.handleCatSelect}
+                options={this.state.allCategories}
+                />
+                <div className='art-container'>
+                    {
+                    arr
+                        .filter(entry => (entry.category_id === Number(this.state.filterCat)) || !this.state.filterCat)
+                        .map(entry => {
                         return <Piece key={entry.piece_id} {...entry}/>
-                    })
-                }
+                        })
+                    }
+                </div>
             </div>
         )
     }
