@@ -31,9 +31,29 @@ export default class Create extends Component {
 
     titleChange = e => this.setState({ title: e.target.value })
     artistChange = e => this.setState({ artist: e.target.value })
-    imgChange = e => this.setState({ img: e.target.value })
+    // imgChange = e => this.setState({ img: e.target.value })
     categoryChange = e => this.setState({ category: e.target.value })
     centuryChange = e => this.setState({ century: e.target.value })
+
+    handleUpload = () => {
+        let options = {
+            cloud_name: 'dmp-cloud', 
+            upload_preset: 'dmp-preset',
+            multiple: false,
+            resource_type: 'image'
+          };
+      
+          window.cloudinary.openUploadWidget(options, (error, result) => { 
+            console.log(result);
+            if (error) {
+              console.error(error);
+              return;
+            }
+            
+            const image = result[0];
+            this.setState({ img: image.url }); 
+          });
+    }
 
     render() {
         return (
@@ -41,7 +61,9 @@ export default class Create extends Component {
                 <h3>Add an artwork to the gallery</h3>
                 <label>Title <input onChange={this.titleChange} /></label>
                 <label>Artist <input onChange={this.artistChange} /></label>
-                <label>Image URL <input onChange={this.imgChange} /></label>
+                <label>Image
+                            <button type='button' className='img-button' onClick={this.handleUpload}>Upload via File/URL</button>
+                        </label>
                 <label>Category <select onChange={this.categoryChange}>
                     {this.state.allCategories.map(category => 
                         <option
