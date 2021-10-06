@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import request from 'superagent'
 import { createPiece } from './fetch-utils.js'
 
 export default class Create extends Component {
