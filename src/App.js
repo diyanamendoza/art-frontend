@@ -18,8 +18,10 @@ export default class App extends Component {
                 <Router>
                     <header>
                         <h2>Art Gallery</h2>
+                        <nav>
                         <NavLink exact activeClassName='active-nav' to='/'>Home</NavLink>
-                        {/* <NavLink exact activeClassName='active-nav' to='/pokemon'>Search</NavLink> */}
+                        <NavLink exact activeClassName='active-nav' to='/add'>Add Art</NavLink>
+                        </nav>
                     </header>
                     <Switch>
                         <Route 

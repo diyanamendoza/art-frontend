@@ -17,8 +17,13 @@ header {
   align-items: center;
 }
 
-header > a {
+nav > a {
   color: black;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
 }
 
 .active-nav {
@@ -63,6 +68,22 @@ header > a {
   font-weight: bolder;
 }
 
+.edit-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  font-weight: bolder;
+  border: 1px black dotted;
+  padding: 30px;
+}
+
+.edit-form > label {
+  display: flex;
+  gap: 10px;
+}
+
 button {
   align-self: center;
   background: white;
@@ -78,4 +99,10 @@ button {
 button:active, button:hover {
   background: black;
   color: white;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }
