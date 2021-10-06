@@ -44,7 +44,7 @@ export default class Detail extends Component {
     render() {
         const piece = this.state.artToDetail;
         const cats = this.state.categories;
-        console.log(cats);
+        // console.log(cats);
         return (
             <div className='detail-container'>
                     <img className="img-detail" src={piece.img} alt={piece.piece_id} />
